@@ -48,6 +48,7 @@ import com.azure.data.appconfiguration.models.SettingSelector;
 import com.azure.security.keyvault.secrets.SecretClient;
 import com.azure.security.keyvault.secrets.SecretClientBuilder;
 import oracle.jdbc.OracleConnection;
+import oracle.jdbc.spi.OracleConfigurationCachableProvider;
 import oracle.jdbc.util.OracleConfigurationCache;
 import oracle.jdbc.util.OracleConfigurationProviderNetworkError;
 import oracle.jdbc.spi.OracleConfigurationProvider;
@@ -67,7 +68,7 @@ import java.util.Properties;
  * </p>
  */
 public class AzureAppConfigurationProvider
-  implements OracleConfigurationProvider {
+  implements OracleConfigurationCachableProvider {
   private static final OracleJsonFactory JSON_FACTORY = new OracleJsonFactory();
 
   private static final String CONNECT_DESCRIPTOR_PROPERTIES_NAME =
@@ -259,6 +260,12 @@ public class AzureAppConfigurationProvider
       } catch (AzureException e) {
         throw new OracleConfigurationProviderNetworkError(e);
       }
+  }
+
+  @Override
+  public Properties removeProperties(String location) {
+    Properties deletedProp = cache.remove(location);
+    return deletedProp;
   }
 }
 
