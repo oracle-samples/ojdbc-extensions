@@ -4,7 +4,7 @@
 
   <groupId>com.oracle.database.jdbc</groupId>
   <artifactId>ojdbc-extensions</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <packaging>pom</packaging>
 
   <name>Extensions for the Oracle JDBC Driver</name>
@@ -90,7 +90,7 @@
       <dependency>
         <groupId>com.oracle.database.jdbc</groupId>
         <artifactId>ojdbc-provider-common</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
         <classifier>tests</classifier>
         <type>test-jar</type>
         <scope>test</scope>
